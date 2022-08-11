@@ -15,7 +15,7 @@ import model.JavaBeans;
 /**
  * Servlet implementation class Controller1
  */
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select" })
 public class Controller1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -36,6 +36,8 @@ public class Controller1 extends HttpServlet {
 			contatos(request, response);
 		} else if (action.equals("/insert")) {
 			novoContato(request, response);
+		} else if (action.equals("/select")){
+			listarContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -71,8 +73,8 @@ public class Controller1 extends HttpServlet {
 		response.sendRedirect("main");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
+	protected void listarContato(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String idcon = request.getParameter("idcon");
+		contato.setIdcon(idcon);
 	}
 }
